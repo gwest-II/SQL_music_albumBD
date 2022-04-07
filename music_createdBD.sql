@@ -25,9 +25,13 @@ CREATE TABLE Tracks (
 CREATE TABLE Collections (
     id serial primary key,
     name varchar(40),
-    year_release integer not null,
-    tracks_id integer not null references Tracks(id);
-    Album_id integer not null references Album(id)
+    year_release integer not null
+);
+
+CREATE TABLE TracksCollections (
+    Tracks_id integer references Tracks(id),
+    Collections_id integer references Collections(id)
+    constraint TracksCollectionsPK primary key (Tracks_id, Collections_id)
 );
 
 CREATE TABLE StylesPerformer if not exists (
