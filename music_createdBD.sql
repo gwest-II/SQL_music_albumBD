@@ -30,18 +30,17 @@ CREATE TABLE Collections (
 
 CREATE TABLE TracksCollections (
     Tracks_id integer references Tracks(id),
-    Collections_id integer references Collections(id)
+    Collections_id integer references Collections(id),
     constraint TracksCollectionsPK primary key (Tracks_id, Collections_id)
 );
 
-CREATE TABLE StylesPerformer if not exists (
+CREATE TABLE if not exists StylesPerformer (
     styles_id integer references Styles(id),
     performer_id integer references Performer(id),
     constraint StylesPerformerPK primary key (styles_id, performer_id)
 );
-
-CREATE TABLE AlbumPerformer if not exists (
-    album_id integer references Styles(id),
+CREATE TABLE if not exists AlbumPerformer (
+    album_id integer references Album(id),
     performer_id integer references Performer(id),
     constraint AlbumPerformerPK primary key (album_id, performer_id)
 );
